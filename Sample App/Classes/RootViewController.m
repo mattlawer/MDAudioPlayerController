@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-	fileArray = [[NSMutableArray alloc] initWithObjects:[[NSBundle mainBundle] pathForResource:@"1" ofType:@"mp3"],
+	fileArray = [[NSMutableArray alloc] initWithObjects:[[NSBundle mainBundle] pathForResource:@"1" ofType:@"m4a"],
 				 [[NSBundle mainBundle] pathForResource:@"2" ofType:@"mp3"],
 				 [[NSBundle mainBundle] pathForResource:@"3" ofType:@"mp3"], nil];
 	
@@ -124,9 +124,14 @@
 		[songs addObject:audioFile];
 	}
 	
-	MDAudioPlayerController *audioPlayer = [[MDAudioPlayerController alloc] initWithSoundFiles:songs atPath:[[NSBundle mainBundle] bundlePath] andSelectedIndex:indexPath.row];
+	MDAudioPlayerController *audioPlayer = [MDAudioPlayerController sharedInstance];
+    if (audioPlayer.soundFiles == nil) {
+        [audioPlayer setSoundFiles:songs atPath:[[NSBundle mainBundle] bundlePath] selectedIndex:indexPath.row];
+    }else {
+        [audioPlayer setSelectedIndex:indexPath.row];
+    }
+    
 	[self.navigationController presentModalViewController:audioPlayer animated:YES];
-	[audioPlayer release];
 }
 
 

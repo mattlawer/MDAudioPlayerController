@@ -14,14 +14,17 @@
 {
 	NSURL			*filePath;
 	NSDictionary	*fileInfoDict;
+    NSData          *artData;
 }
 
 @property (nonatomic, retain) NSURL *filePath;
 @property (nonatomic, retain) NSDictionary *fileInfoDict;
+@property (nonatomic, retain) NSData *artData;
 
 - (MDAudioFile *)initWithPath:(NSURL *)path;
 - (NSDictionary *)songID3Tags;
 - (NSString *)title;
+- (NSString *)subtitle;
 - (NSString *)artist;
 - (NSString *)album;
 - (float)duration;

@@ -13,6 +13,7 @@
 
 @synthesize filePath;
 @synthesize fileInfoDict;
+@synthesize artData;
 
 - (MDAudioFile *)initWithPath:(NSURL *)path
 {
@@ -32,7 +33,7 @@
 	
 	error = AudioFileOpenURL((CFURLRef)self.filePath, kAudioFileReadPermission, 0, &fileID);
 	if (error != noErr) {
-        NSLog(@"AudioFileOpenURL failed");
+        NSLog(@"AudioFileOpenURL failed : %@",self.filePath);
     }
 	
 	UInt32 id3DataSize  = 0;
@@ -44,7 +45,7 @@
 	
     rawID3Tag = (char *)malloc(id3DataSize);
     if (rawID3Tag == NULL)
-        NSLog(@"could not allocate %d bytes of memory for ID3 tag", id3DataSize);
+        NSLog(@"could not allocate %lu bytes of memory for ID3 tag", id3DataSize);
     
     error = AudioFileGetProperty(fileID, kAudioFilePropertyID3Tag, &id3DataSize, rawID3Tag);
     if( error != noErr )
@@ -88,8 +89,30 @@
     error = AudioFileGetProperty(fileID, kAudioFilePropertyInfoDictionary, &piDataSize, &piDict);
     if (error != noErr)
         NSLog(@"AudioFileGetProperty failed for property info dictionary");
-	
+    
 	free(rawID3Tag);
+    
+    NSLog(@"Song : %@",(NSDictionary*)piDict);
+    
+    
+    
+    CFDataRef data = nil;
+    UInt32 artDataSize  = 0;
+	
+    error = AudioFileGetPropertyInfo(fileID, kAudioFilePropertyAlbumArtwork, &artDataSize, NULL);
+	
+    NSLog(@"Artwork size : %lu",artDataSize);
+        
+    // fail with mp3 files but works with m4a
+    error = AudioFileGetProperty(fileID, kAudioFilePropertyAlbumArtwork, &artDataSize, &data);
+    if (error != noErr) {
+        NSLog( @"kAudioFilePropertyAlbumArtwork failed" );
+    }
+
+    if (data) {
+        self.artData = [[NSData alloc] initWithData:(NSData *)data];
+        CFRelease(data);
+    }
 	
 	return (NSDictionary*)piDict;
 }
@@ -107,6 +130,14 @@
 	}
 	
 	return nil;
+}
+
+- (NSString *)subtitle
+{
+	if ([fileInfoDict objectForKey:[NSString stringWithUTF8String:kAFInfoDictionary_SubTitle]])
+		return [fileInfoDict objectForKey:[NSString stringWithUTF8String:kAFInfoDictionary_SubTitle]];
+	else
+		return @"";
 }
 
 - (NSString *)artist
@@ -140,7 +171,14 @@
 
 - (UIImage *)coverImage
 {
-	return [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AudioPlayerNoArtwork" ofType:@"png"]];
+    return (artData) ? [UIImage imageWithData:(NSData*)artData] : [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AudioPlayerNoArtwork" ofType:@"png"]];
+}
+
+- (void) dealloc {
+    [filePath release];
+    [fileInfoDict release];
+    [artData release];
+    [super dealloc];
 }
 
 @end

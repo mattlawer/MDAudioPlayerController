@@ -10,6 +10,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import <QuartzCore/QuartzCore.h>
 
+@class MPVolumeView;
+
 @interface MDAudioPlayerController : UIViewController <AVAudioPlayerDelegate, UITableViewDelegate, UITableViewDataSource>
 {
 	NSMutableArray		*soundFiles;
@@ -33,12 +35,12 @@
 	UILabel				*artistLabel;
 	UILabel				*albumLabel;
 	UILabel				*indexLabel;
-	UISlider			*volumeSlider;
+	MPVolumeView		*volumeSlider;
 	UISlider			*progressSlider;
 	
 	UITableView			*songTableView;
 	
-	UIButton			*artworkView;
+	UIImageView         *artworkView;
 	UIImageView			*reflectionView;
 	UIView				*containerView;
 	UIView				*overlayView;
@@ -73,12 +75,12 @@
 @property (nonatomic, retain) UILabel *artistLabel;
 @property (nonatomic, retain) UILabel *albumLabel;
 
-@property (nonatomic, retain) UISlider *volumeSlider;
+@property (nonatomic, retain) MPVolumeView *volumeSlider;
 @property (nonatomic, retain) UISlider *progressSlider;
 
 @property (nonatomic, retain) UITableView *songTableView;
 
-@property (nonatomic, retain) UIButton *artworkView;
+@property (nonatomic, retain) UIImageView *artworkView;
 @property (nonatomic, retain) UIImageView *reflectionView;
 @property (nonatomic, retain) UIView *containerView;
 @property (nonatomic, retain) UIView *overlayView;
@@ -90,7 +92,12 @@
 @property (nonatomic, assign) BOOL repeatOne;
 @property (nonatomic, assign) BOOL shuffle;
 
++ (MDAudioPlayerController *)sharedInstance;
++ (BOOL) sharedInstanceExist;
+
 - (MDAudioPlayerController *)initWithSoundFiles:(NSMutableArray *)songs atPath:(NSString *)path andSelectedIndex:(int)index;
+- (void) setSoundFiles:(NSMutableArray *)songs atPath:(NSString *)path selectedIndex:(int)index;
+- (void) setSelectedIndex:(NSUInteger)index;
 - (void)dismissAudioPlayer;
 - (void)showSongFiles;
 - (void)showOverlayView;
@@ -101,11 +108,14 @@
 - (void)play;
 - (void)previous;
 - (void)next;
-- (void)volumeSliderMoved:(UISlider*)sender;
 - (void)progressSliderMoved:(UISlider*)sender;
 
 - (void)toggleShuffle;
 - (void)toggleRepeat;
+
+
+- (void)updateViewForPlayerState:(AVAudioPlayer *)p;
+-(void)updateViewForPlayerInfo:(AVAudioPlayer*)p;
 
 @end
 
