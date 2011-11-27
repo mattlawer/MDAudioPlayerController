@@ -12,8 +12,6 @@
 
 #import <MediaPlayer/MediaPlayer.h>
 
-#define MediaPlayer   @"/System/Library/Frameworks/MediaPlayer.framework"
-
 
 @interface MDAudioPlayerController ()
 - (UIImage *)reflectedImage:(UIImageView *)fromImage withHeight:(NSUInteger)height;
@@ -367,14 +365,14 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
 	buttonBackground  = nil;
     
 	self.playButton = [[UIButton alloc] initWithFrame:CGRectMake((width/2)-16, height-90, 40, 40)];
-	[playButton setImage:[UIImage imageWithContentsOfFile:[MediaPlayer stringByAppendingPathComponent:@"play.png"]] forState:UIControlStateNormal];
+	[playButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"play" ofType:@"png"]] forState:UIControlStateNormal];
 	[playButton addTarget:self action:@selector(play) forControlEvents:UIControlEventTouchUpInside];
 	playButton.showsTouchWhenHighlighted = YES;
     playButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
 	[self.view addSubview:playButton];
     
 	self.pauseButton = [[UIButton alloc] initWithFrame:CGRectMake((width/2)-20, height-90, 40, 40)];
-	[pauseButton setImage:[UIImage imageWithContentsOfFile:[MediaPlayer stringByAppendingPathComponent:@"pause.png"]] forState:UIControlStateNormal];
+	[pauseButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"pause" ofType:@"png"]] forState:UIControlStateNormal];
 	[pauseButton addTarget:self action:@selector(play) forControlEvents:UIControlEventTouchUpInside];
 	pauseButton.showsTouchWhenHighlighted = YES;
     pauseButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
@@ -382,7 +380,7 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
     [self.view addSubview:pauseButton];
 	
 	self.nextButton = [[UIButton alloc] initWithFrame:CGRectMake((width/2)+60, height-90, 40, 40)];
-	[nextButton setImage:[UIImage imageWithContentsOfFile:[MediaPlayer stringByAppendingPathComponent:@"nexttrack.png"]] 
+	[nextButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"nexttrack" ofType:@"png"]] 
 				forState:UIControlStateNormal];
 	[nextButton addTarget:self action:@selector(next) forControlEvents:UIControlEventTouchUpInside];
 	nextButton.showsTouchWhenHighlighted = YES;
@@ -391,7 +389,7 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
 	[self.view addSubview:nextButton];
 	
 	self.previousButton = [[UIButton alloc] initWithFrame:CGRectMake((width/2)-100, height-90, 40, 40)];
-	[previousButton setImage:[UIImage imageWithContentsOfFile:[MediaPlayer stringByAppendingPathComponent:@"prevtrack.png"]] 
+	[previousButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"prevtrack" ofType:@"png"]] 
                     forState:UIControlStateNormal];
 	[previousButton addTarget:self action:@selector(previous) forControlEvents:UIControlEventTouchUpInside];
 	previousButton.showsTouchWhenHighlighted = YES;
@@ -578,11 +576,11 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
 		overlayView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.6];
 		overlayView.opaque = NO;
 		
-		self.progressSlider = [[UISlider alloc] initWithFrame:CGRectMake(54, 20, self.view.bounds.size.width-108, 23)];
-		[progressSlider setThumbImage:[UIImage imageWithContentsOfFile:[MediaPlayer stringByAppendingPathComponent:@"VolumeKnob.png"]]/*ScrubberKnob*/
+		self.progressSlider = [[UISlider alloc] initWithFrame:CGRectMake(54, 20, self.view.bounds.size.width-108, 18)];
+		[progressSlider setThumbImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ScrubberKnob" ofType:@"png"]]
 						   forState:UIControlStateNormal];
-		[progressSlider setMinimumTrackImage:[[UIImage imageWithContentsOfFile:[MediaPlayer stringByAppendingPathComponent:@"VolumeBlueTrack.png"]] stretchableImageWithLeftCapWidth:5 topCapHeight:3] forState:UIControlStateNormal];
-		[progressSlider setMaximumTrackImage:[[UIImage imageWithContentsOfFile:[MediaPlayer stringByAppendingPathComponent:@"VolumeWhiteTrack.png"]] stretchableImageWithLeftCapWidth:5 topCapHeight:3] forState:UIControlStateNormal];
+		[progressSlider setMinimumTrackImage:[[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"VolumeBlueTrack" ofType:@"png"]] stretchableImageWithLeftCapWidth:5 topCapHeight:3] forState:UIControlStateNormal];
+		[progressSlider setMaximumTrackImage:[[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"VolumeWhiteTrack" ofType:@"png"]] stretchableImageWithLeftCapWidth:5 topCapHeight:3] forState:UIControlStateNormal];
 		[progressSlider addTarget:self action:@selector(progressSliderMoved:) forControlEvents:UIControlEventValueChanged];
 		progressSlider.maximumValue = player.duration;
 		progressSlider.minimumValue = 0.0;	
@@ -621,13 +619,13 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
 		currentTime.adjustsFontSizeToFitWidth = YES;
 		
 		self.repeatButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 45, 32, 28)];
-		[repeatButton setImage:[UIImage imageWithContentsOfFile:[MediaPlayer stringByAppendingPathComponent:@"repeat_off.png"]] 
+		[repeatButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"repeat_off" ofType:@"png"]] 
 					  forState:UIControlStateNormal];
 		[repeatButton addTarget:self action:@selector(toggleRepeat) forControlEvents:UIControlEventTouchUpInside];
 		[overlayView addSubview:repeatButton];
 		
 		self.shuffleButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-40, 45, 32, 28)];
-		[shuffleButton setImage:[UIImage imageWithContentsOfFile:[MediaPlayer stringByAppendingPathComponent:@"shuffle_off.png"]] 
+		[shuffleButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"shuffle_off" ofType:@"png"]] 
 					  forState:UIControlStateNormal];
 		[shuffleButton addTarget:self action:@selector(toggleShuffle) forControlEvents:UIControlEventTouchUpInside];
         shuffleButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
@@ -654,12 +652,12 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
 	if (shuffle)
 	{
 		shuffle = NO;
-		[shuffleButton setImage:[UIImage imageWithContentsOfFile:[MediaPlayer stringByAppendingPathComponent:@"shuffle_off.png"]] forState:UIControlStateNormal];
+		[shuffleButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"shuffle_off" ofType:@"png"]] forState:UIControlStateNormal];
 	}
 	else
 	{
 		shuffle = YES;
-		[shuffleButton setImage:[UIImage imageWithContentsOfFile:[MediaPlayer stringByAppendingPathComponent:@"shoffle_on.png"]] forState:UIControlStateNormal];
+		[shuffleButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"shuffle_on" ofType:@"png"]] forState:UIControlStateNormal];
 	}
 	
 	[self updateViewForPlayerInfo:player];
@@ -670,21 +668,21 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
 {
 	if (repeatOne)
 	{
-		[repeatButton setImage:[UIImage imageWithContentsOfFile:[MediaPlayer stringByAppendingPathComponent:@"repeat_off.png"]] 
+		[repeatButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"repeat_off" ofType:@"png"]] 
 					  forState:UIControlStateNormal];
 		repeatOne = NO;
 		repeatAll = NO;
 	}
 	else if (repeatAll)
 	{
-		[repeatButton setImage:[UIImage imageWithContentsOfFile:[MediaPlayer stringByAppendingPathComponent:@"repeat_on_1.png"]] 
+		[repeatButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"repeat_on_1" ofType:@"png"]]
 					  forState:UIControlStateNormal];
 		repeatOne = YES;
 		repeatAll = NO;
 	}
 	else
 	{
-		[repeatButton setImage:[UIImage imageWithContentsOfFile:[MediaPlayer stringByAppendingPathComponent:@"repeat_on.png"]] 
+		[repeatButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"repeat_on" ofType:@"png"]]
 					  forState:UIControlStateNormal];
 		repeatOne = NO;
 		repeatAll = YES;
