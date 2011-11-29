@@ -251,7 +251,7 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
 	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissAudioPlayer)];
 	
 	self.toggleButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-	[toggleButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AudioPlayerAlbumInfo" ofType:@"png"]] forState:UIControlStateNormal];
+	[toggleButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AudioPlayerAlbumInfo" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]] forState:UIControlStateNormal];
 	[toggleButton addTarget:self action:@selector(showSongFiles) forControlEvents:UIControlEventTouchUpInside];
 	
 	UIBarButtonItem *songsListBarButton = [[UIBarButtonItem alloc] initWithCustomView:toggleButton];
@@ -358,21 +358,21 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
 	v = nil;
     
 	UIImageView *buttonBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, height-96, self.view.bounds.size.width, 96)];
-	buttonBackground.image = [[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AudioPlayerBarBackground" ofType:@"png"]] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
+	buttonBackground.image = [[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AudioPlayerBarBackground" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
     buttonBackground.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
 	[self.view addSubview:buttonBackground];
 	[buttonBackground release];
 	buttonBackground  = nil;
     
 	self.playButton = [[UIButton alloc] initWithFrame:CGRectMake((width/2)-16, height-90, 40, 40)];
-	[playButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"play" ofType:@"png"]] forState:UIControlStateNormal];
+	[playButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"play" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]] forState:UIControlStateNormal];
 	[playButton addTarget:self action:@selector(play) forControlEvents:UIControlEventTouchUpInside];
 	playButton.showsTouchWhenHighlighted = YES;
     playButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
 	[self.view addSubview:playButton];
     
 	self.pauseButton = [[UIButton alloc] initWithFrame:CGRectMake((width/2)-20, height-90, 40, 40)];
-	[pauseButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"pause" ofType:@"png"]] forState:UIControlStateNormal];
+	[pauseButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"pause" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]] forState:UIControlStateNormal];
 	[pauseButton addTarget:self action:@selector(play) forControlEvents:UIControlEventTouchUpInside];
 	pauseButton.showsTouchWhenHighlighted = YES;
     pauseButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
@@ -380,7 +380,7 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
     [self.view addSubview:pauseButton];
 	
 	self.nextButton = [[UIButton alloc] initWithFrame:CGRectMake((width/2)+60, height-90, 40, 40)];
-	[nextButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"nexttrack" ofType:@"png"]] 
+	[nextButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"nexttrack" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]] 
 				forState:UIControlStateNormal];
 	[nextButton addTarget:self action:@selector(next) forControlEvents:UIControlEventTouchUpInside];
 	nextButton.showsTouchWhenHighlighted = YES;
@@ -389,7 +389,7 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
 	[self.view addSubview:nextButton];
 	
 	self.previousButton = [[UIButton alloc] initWithFrame:CGRectMake((width/2)-100, height-90, 40, 40)];
-	[previousButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"prevtrack" ofType:@"png"]] 
+	[previousButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"prevtrack" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]] 
                     forState:UIControlStateNormal];
 	[previousButton addTarget:self action:@selector(previous) forControlEvents:UIControlEventTouchUpInside];
 	previousButton.showsTouchWhenHighlighted = YES;
@@ -535,7 +535,7 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
 									UIViewAnimationTransitionFlipFromLeft : UIViewAnimationTransitionFlipFromRight)
 						   forView:self.toggleButton cache:YES];
 	if ([songTableView superview])
-		[self.toggleButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AudioPlayerAlbumInfo" ofType:@"png"]] forState:UIControlStateNormal];
+		[self.toggleButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AudioPlayerAlbumInfo" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]] forState:UIControlStateNormal];
 	else
 		[self.toggleButton setImage:self.artworkView.image forState:UIControlStateNormal];
 	
@@ -557,7 +557,7 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
 	}
 	else
 	{
-		[self.artworkView setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AudioPlayerTableBackground" ofType:@"png"]]];
+		[self.artworkView setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AudioPlayerTableBackground" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]]];
 		[self.reflectionView removeFromSuperview];
 		[self.overlayView removeFromSuperview];
 		[self.containerView addSubview:songTableView];
@@ -577,10 +577,10 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
 		overlayView.opaque = NO;
 		
 		self.progressSlider = [[UISlider alloc] initWithFrame:CGRectMake(54, 20, self.view.bounds.size.width-108, 18)];
-		[progressSlider setThumbImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ScrubberKnob" ofType:@"png"]]
+		[progressSlider setThumbImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ScrubberKnob" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]]
 						   forState:UIControlStateNormal];
-		[progressSlider setMinimumTrackImage:[[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"VolumeBlueTrack" ofType:@"png"]] stretchableImageWithLeftCapWidth:5 topCapHeight:3] forState:UIControlStateNormal];
-		[progressSlider setMaximumTrackImage:[[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"VolumeWhiteTrack" ofType:@"png"]] stretchableImageWithLeftCapWidth:5 topCapHeight:3] forState:UIControlStateNormal];
+		[progressSlider setMinimumTrackImage:[[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"VolumeBlueTrack" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]] stretchableImageWithLeftCapWidth:5 topCapHeight:3] forState:UIControlStateNormal];
+		[progressSlider setMaximumTrackImage:[[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"VolumeWhiteTrack" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]] stretchableImageWithLeftCapWidth:5 topCapHeight:3] forState:UIControlStateNormal];
 		[progressSlider addTarget:self action:@selector(progressSliderMoved:) forControlEvents:UIControlEventValueChanged];
 		progressSlider.maximumValue = player.duration;
 		progressSlider.minimumValue = 0.0;	
@@ -619,13 +619,13 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
 		currentTime.adjustsFontSizeToFitWidth = YES;
 		
 		self.repeatButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 45, 32, 28)];
-		[repeatButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"repeat_off" ofType:@"png"]] 
+		[repeatButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"repeat_off" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]] 
 					  forState:UIControlStateNormal];
 		[repeatButton addTarget:self action:@selector(toggleRepeat) forControlEvents:UIControlEventTouchUpInside];
 		[overlayView addSubview:repeatButton];
 		
 		self.shuffleButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-40, 45, 32, 28)];
-		[shuffleButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"shuffle_off" ofType:@"png"]] 
+		[shuffleButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"shuffle_off" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]] 
 					  forState:UIControlStateNormal];
 		[shuffleButton addTarget:self action:@selector(toggleShuffle) forControlEvents:UIControlEventTouchUpInside];
         shuffleButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
@@ -652,12 +652,12 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
 	if (shuffle)
 	{
 		shuffle = NO;
-		[shuffleButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"shuffle_off" ofType:@"png"]] forState:UIControlStateNormal];
+		[shuffleButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"shuffle_off" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]] forState:UIControlStateNormal];
 	}
 	else
 	{
 		shuffle = YES;
-		[shuffleButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"shuffle_on" ofType:@"png"]] forState:UIControlStateNormal];
+		[shuffleButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"shuffle_on" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]] forState:UIControlStateNormal];
 	}
 	
 	[self updateViewForPlayerInfo:player];
@@ -668,21 +668,21 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
 {
 	if (repeatOne)
 	{
-		[repeatButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"repeat_off" ofType:@"png"]] 
+		[repeatButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"repeat_off" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]] 
 					  forState:UIControlStateNormal];
 		repeatOne = NO;
 		repeatAll = NO;
 	}
 	else if (repeatAll)
 	{
-		[repeatButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"repeat_on_1" ofType:@"png"]]
+		[repeatButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"repeat_on_1" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]]
 					  forState:UIControlStateNormal];
 		repeatOne = YES;
 		repeatAll = NO;
 	}
 	else
 	{
-		[repeatButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"repeat_on" ofType:@"png"]]
+		[repeatButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"repeat_on" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]]
 					  forState:UIControlStateNormal];
 		repeatOne = NO;
 		repeatAll = YES;

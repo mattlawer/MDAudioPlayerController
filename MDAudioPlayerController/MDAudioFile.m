@@ -171,7 +171,8 @@
 
 - (UIImage *)coverImage
 {
-    return (artData) ? [UIImage imageWithData:(NSData*)artData] : [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AudioPlayerNoArtwork" ofType:@"png"]];
+    // fail with mp3 files but works with m4a (see songID3Tags)
+    return (artData) ? [UIImage imageWithData:(NSData*)artData] : [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AudioPlayerNoArtwork" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]];
 }
 
 - (void) dealloc {
