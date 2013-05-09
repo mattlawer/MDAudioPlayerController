@@ -131,7 +131,7 @@
         [audioPlayer setSelectedIndex:indexPath.row];
     }
     
-	[self.navigationController presentModalViewController:audioPlayer animated:YES];
+	[self.navigationController presentViewController:audioPlayer animated:YES completion:^{}];
 }
 
 

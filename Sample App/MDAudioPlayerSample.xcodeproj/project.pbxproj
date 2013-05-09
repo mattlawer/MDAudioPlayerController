@@ -14,6 +14,7 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
+		4E5C597E173BB30700CA8234 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E5C597D173BB30700CA8234 /* Default-568h@2x.png */; };
 		4E78211A147E7FEA0003F609 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E782119147E7FEA0003F609 /* MediaPlayer.framework */; };
 		4E78211E147E80A90003F609 /* MDAudioPlayerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E78211D147E80A90003F609 /* MDAudioPlayerTableViewCell.m */; };
 		4E782120147E90AC0003F609 /* 1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 4E78211F147E90AC0003F609 /* 1.m4a */; };
@@ -40,6 +41,7 @@
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4E5C597D173BB30700CA8234 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4E782119147E7FEA0003F609 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		4E78211C147E80A90003F609 /* MDAudioPlayerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDAudioPlayerTableViewCell.h; sourceTree = "<group>"; };
 		4E78211D147E80A90003F609 /* MDAudioPlayerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDAudioPlayerTableViewCell.m; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				4E78211F147E90AC0003F609 /* 1.m4a */,
 				C99ACC5C1208ADC9004ED7EE /* 2.mp3 */,
 				C99ACC5D1208ADC9004ED7EE /* 3.mp3 */,
+				4E5C597D173BB30700CA8234 /* Default-568h@2x.png */,
 				28F335F01007B36200424DE2 /* RootViewController.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* MDAudioPlayerSample-Info.plist */,
@@ -215,6 +218,7 @@
 				C99ACC601208ADC9004ED7EE /* 3.mp3 in Resources */,
 				4E782120147E90AC0003F609 /* 1.m4a in Resources */,
 				4E9FA2D11485482700E60964 /* MDAudioPlayer.bundle in Resources */,
+				4E5C597E173BB30700CA8234 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,7 +251,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MDAudioPlayerSample_Prefix.pch;
 				INFOPLIST_FILE = "MDAudioPlayerSample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = MDAudioPlayerSample;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -259,7 +265,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MDAudioPlayerSample_Prefix.pch;
 				INFOPLIST_FILE = "MDAudioPlayerSample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = MDAudioPlayerSample;
+				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

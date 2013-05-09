@@ -256,7 +256,7 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
 	
 	UIBarButtonItem *songsListBarButton = [[UIBarButtonItem alloc] initWithCustomView:toggleButton];
     
-    [tool setItems:[NSArray arrayWithObjects:songsListBarButton,[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease], doneButton, nil]];
+    [tool setItems:[NSArray arrayWithObjects:doneButton, [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease], songsListBarButton, nil]];
     [doneButton release];
 	doneButton = nil;
     [songsListBarButton release];
@@ -282,8 +282,8 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
 	titleLabel.textColor = [UIColor whiteColor];
 	titleLabel.shadowColor = [UIColor blackColor];
 	titleLabel.shadowOffset = CGSizeMake(0, -1);
-	titleLabel.textAlignment = UITextAlignmentCenter;
-	titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
+	titleLabel.textAlignment = NSTextAlignmentCenter;
+	titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	[self.view addSubview:titleLabel];
 	
@@ -294,8 +294,8 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
 	artistLabel.textColor = [UIColor lightGrayColor];
 	artistLabel.shadowColor = [UIColor blackColor];
 	artistLabel.shadowOffset = CGSizeMake(0, -1);
-	artistLabel.textAlignment = UITextAlignmentCenter;
-	artistLabel.lineBreakMode = UILineBreakModeTailTruncation;
+	artistLabel.textAlignment = NSTextAlignmentCenter;
+	artistLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     artistLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	[self.view addSubview:artistLabel];
 	
@@ -306,8 +306,8 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
 	albumLabel.textColor = [UIColor lightGrayColor];
 	albumLabel.shadowColor = [UIColor blackColor];
 	albumLabel.shadowOffset = CGSizeMake(0, -1);
-	albumLabel.textAlignment = UITextAlignmentCenter;
-	albumLabel.lineBreakMode = UILineBreakModeTailTruncation;
+	albumLabel.textAlignment = NSTextAlignmentCenter;
+	albumLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     albumLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	[self.view addSubview:albumLabel];
 	
@@ -364,7 +364,7 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
 	[buttonBackground release];
 	buttonBackground  = nil;
     
-	self.playButton = [[UIButton alloc] initWithFrame:CGRectMake((width/2)-16, height-90, 40, 40)];
+	self.playButton = [[UIButton alloc] initWithFrame:CGRectMake((width/2)-20, height-90, 40, 40)];
 	[playButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"play" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]] forState:UIControlStateNormal];
 	[playButton addTarget:self action:@selector(play) forControlEvents:UIControlEventTouchUpInside];
 	playButton.showsTouchWhenHighlighted = YES;
@@ -379,7 +379,7 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
     pauseButton.hidden = YES;
     [self.view addSubview:pauseButton];
 	
-	self.nextButton = [[UIButton alloc] initWithFrame:CGRectMake((width/2)+60, height-90, 40, 40)];
+	self.nextButton = [[UIButton alloc] initWithFrame:CGRectMake((width/2)+90, height-90, 40, 40)];
 	[nextButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"nexttrack" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]] 
 				forState:UIControlStateNormal];
 	[nextButton addTarget:self action:@selector(next) forControlEvents:UIControlEventTouchUpInside];
@@ -388,7 +388,7 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
     nextButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
 	[self.view addSubview:nextButton];
 	
-	self.previousButton = [[UIButton alloc] initWithFrame:CGRectMake((width/2)-100, height-90, 40, 40)];
+	self.previousButton = [[UIButton alloc] initWithFrame:CGRectMake((width/2)-130, height-90, 40, 40)];
 	[previousButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"prevtrack" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]] 
                     forState:UIControlStateNormal];
 	[previousButton addTarget:self action:@selector(previous) forControlEvents:UIControlEventTouchUpInside];
@@ -397,7 +397,7 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
     previousButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
 	[self.view addSubview:previousButton];
 	
-	self.volumeSlider = [[MPVolumeView alloc] initWithFrame:CGRectMake((width/2)-135, height-40, 270, 25)];
+	self.volumeSlider = [[MPVolumeView alloc] initWithFrame:CGRectMake((width/2)-110, height-40, 220, 25)];
     
     volumeSlider.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
 	[self.view addSubview:volumeSlider];
@@ -518,7 +518,7 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
 - (void)dismissAudioPlayer
 {
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-	[self dismissModalViewControllerAnimated:YES];
+	[self dismissViewControllerAnimated:YES completion:^{}];
     [self becomeFirstResponder];
     // Handle Audio Remote Control events (only available under iOS 4
 	if ([[UIApplication sharedApplication] respondsToSelector:@selector(beginReceivingRemoteControlEvents)]){
@@ -572,11 +572,11 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
 {	
 	if (overlayView == nil) 
 	{		
-		self.overlayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 76)];
+		self.overlayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 66)];
 		overlayView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.6];
 		overlayView.opaque = NO;
 		
-		self.progressSlider = [[UISlider alloc] initWithFrame:CGRectMake(54, 20, self.view.bounds.size.width-108, 18)];
+		self.progressSlider = [[UISlider alloc] initWithFrame:CGRectMake(54, 12, self.view.bounds.size.width-108, 18)];
 		[progressSlider setThumbImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ScrubberKnob" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]]
 						   forState:UIControlStateNormal];
 		[progressSlider setMinimumTrackImage:[[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"VolumeBlueTrack" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]] stretchableImageWithLeftCapWidth:5 topCapHeight:3] forState:UIControlStateNormal];
@@ -587,44 +587,44 @@ void interruptionListenerCallback (void *userData, UInt32 interruptionState)
         progressSlider.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		[overlayView addSubview:progressSlider];
 		
-		self.indexLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.bounds.size.width/2)-32, 2, 64, 21)];
+		self.indexLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.bounds.size.width/2)-32, 0, 64, 18)];
 		indexLabel.font = [UIFont boldSystemFontOfSize:12];
 		indexLabel.shadowOffset = CGSizeMake(0, -1);
 		indexLabel.shadowColor = [UIColor blackColor];
 		indexLabel.backgroundColor = [UIColor clearColor];
-		indexLabel.textColor = [UIColor whiteColor];
-		indexLabel.textAlignment = UITextAlignmentCenter;
+		indexLabel.textColor = [UIColor lightGrayColor];
+		indexLabel.textAlignment = NSTextAlignmentCenter;
         indexLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
 		[overlayView addSubview:indexLabel];
 		
-		self.duration = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-48, 21, 48, 21)];
-		duration.font = [UIFont boldSystemFontOfSize:14];
+		self.duration = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-48, 15, 48, 18)];
+		duration.font = [UIFont boldSystemFontOfSize:12];
 		duration.shadowOffset = CGSizeMake(0, -1);
 		duration.shadowColor = [UIColor blackColor];
 		duration.backgroundColor = [UIColor clearColor];
-		duration.textColor = [UIColor whiteColor];
+		duration.textColor = [UIColor lightGrayColor];
         duration.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
 		[overlayView addSubview:duration];
 		
-		self.currentTime = [[UILabel alloc] initWithFrame:CGRectMake(0, 21, 48, 21)];
-		currentTime.font = [UIFont boldSystemFontOfSize:14];
+		self.currentTime = [[UILabel alloc] initWithFrame:CGRectMake(0, 15, 48, 18)];
+		currentTime.font = [UIFont boldSystemFontOfSize:12];
 		currentTime.shadowOffset = CGSizeMake(0, -1);
 		currentTime.shadowColor = [UIColor blackColor];
 		currentTime.backgroundColor = [UIColor clearColor];
-		currentTime.textColor = [UIColor whiteColor];
-		currentTime.textAlignment = UITextAlignmentRight;
+		currentTime.textColor = [UIColor lightGrayColor];
+		currentTime.textAlignment = NSTextAlignmentRight;
 		[overlayView addSubview:currentTime];
 		
 		duration.adjustsFontSizeToFitWidth = YES;
 		currentTime.adjustsFontSizeToFitWidth = YES;
 		
-		self.repeatButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 45, 32, 28)];
+		self.repeatButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 30, 32, 28)];
 		[repeatButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"repeat_off" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]] 
 					  forState:UIControlStateNormal];
 		[repeatButton addTarget:self action:@selector(toggleRepeat) forControlEvents:UIControlEventTouchUpInside];
 		[overlayView addSubview:repeatButton];
 		
-		self.shuffleButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-40, 45, 32, 28)];
+		self.shuffleButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-40, 30, 32, 28)];
 		[shuffleButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"shuffle_off" ofType:@"png" inDirectory:@"MDAudioPlayer.bundle"]] 
 					  forState:UIControlStateNormal];
 		[shuffleButton addTarget:self action:@selector(toggleShuffle) forControlEvents:UIControlEventTouchUpInside];
