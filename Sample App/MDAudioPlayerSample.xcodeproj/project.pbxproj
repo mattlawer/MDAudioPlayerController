@@ -19,6 +19,7 @@
 		4E78211E147E80A90003F609 /* MDAudioPlayerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E78211D147E80A90003F609 /* MDAudioPlayerTableViewCell.m */; };
 		4E782120147E90AC0003F609 /* 1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 4E78211F147E90AC0003F609 /* 1.m4a */; };
 		4E9FA2D11485482700E60964 /* MDAudioPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4E9FA2D01485482700E60964 /* MDAudioPlayer.bundle */; };
+		4EC9490917578D870006E8D2 /* MDAudioTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC9490817578D870006E8D2 /* MDAudioTitleView.m */; };
 		C99ACC5F1208ADC9004ED7EE /* 2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C99ACC5C1208ADC9004ED7EE /* 2.mp3 */; };
 		C99ACC601208ADC9004ED7EE /* 3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C99ACC5D1208ADC9004ED7EE /* 3.mp3 */; };
 		C99ACCD51208AE54004ED7EE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C99ACCD41208AE54004ED7EE /* AudioToolbox.framework */; };
@@ -47,6 +48,8 @@
 		4E78211D147E80A90003F609 /* MDAudioPlayerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDAudioPlayerTableViewCell.m; sourceTree = "<group>"; };
 		4E78211F147E90AC0003F609 /* 1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1.m4a; sourceTree = "<group>"; };
 		4E9FA2D01485482700E60964 /* MDAudioPlayer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MDAudioPlayer.bundle; sourceTree = "<group>"; };
+		4EC9490717578D870006E8D2 /* MDAudioTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDAudioTitleView.h; sourceTree = "<group>"; };
+		4EC9490817578D870006E8D2 /* MDAudioTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDAudioTitleView.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* MDAudioPlayerSample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MDAudioPlayerSample-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		C99ACC5C1208ADC9004ED7EE /* 2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 2.mp3; sourceTree = "<group>"; };
 		C99ACC5D1208ADC9004ED7EE /* 3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 3.mp3; sourceTree = "<group>"; };
@@ -155,6 +158,8 @@
 				C99ACE2D1208B34C004ED7EE /* MDAudioFile.m */,
 				C99ACE2E1208B34C004ED7EE /* MDAudioPlayerController.h */,
 				C99ACE2F1208B34C004ED7EE /* MDAudioPlayerController.m */,
+				4EC9490717578D870006E8D2 /* MDAudioTitleView.h */,
+				4EC9490817578D870006E8D2 /* MDAudioTitleView.m */,
 				4E78211C147E80A90003F609 /* MDAudioPlayerTableViewCell.h */,
 				4E78211D147E80A90003F609 /* MDAudioPlayerTableViewCell.m */,
 			);
@@ -235,6 +240,7 @@
 				C99ACE411208B34C004ED7EE /* MDAudioFile.m in Sources */,
 				C99ACE421208B34C004ED7EE /* MDAudioPlayerController.m in Sources */,
 				4E78211E147E80A90003F609 /* MDAudioPlayerTableViewCell.m in Sources */,
+				4EC9490917578D870006E8D2 /* MDAudioTitleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

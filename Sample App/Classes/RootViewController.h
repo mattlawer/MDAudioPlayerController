@@ -14,5 +14,6 @@
 }
 
 @property (nonatomic, retain) NSMutableArray *fileArray;
+@property (nonatomic, assign) IBOutlet UISegmentedControl *presentationType;
 
 @end

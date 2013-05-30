@@ -10,6 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <QuartzCore/QuartzCore.h>
 
+@class MDAudioTitleView;
 @class MPVolumeView;
 
 @interface MDAudioPlayerController : UIViewController <AVAudioPlayerDelegate, UITableViewDelegate, UITableViewDataSource>
@@ -31,9 +32,7 @@
 	UIButton			*shuffleButton;
 	UILabel				*currentTime;
 	UILabel				*duration;
-	UILabel				*titleLabel;
-	UILabel				*artistLabel;
-	UILabel				*albumLabel;
+	MDAudioTitleView    *titleView;
 	UILabel				*indexLabel;
 	MPVolumeView		*volumeSlider;
 	UISlider			*progressSlider;
@@ -71,9 +70,7 @@
 @property (nonatomic, retain) UILabel *currentTime;
 @property (nonatomic, retain) UILabel *duration;
 @property (nonatomic, retain) UILabel *indexLabel;;
-@property (nonatomic, retain) UILabel *titleLabel;
-@property (nonatomic, retain) UILabel *artistLabel;
-@property (nonatomic, retain) UILabel *albumLabel;
+@property (nonatomic, retain) MDAudioTitleView *titleView;
 
 @property (nonatomic, retain) MPVolumeView *volumeSlider;
 @property (nonatomic, retain) UISlider *progressSlider;

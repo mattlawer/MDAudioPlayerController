@@ -14,6 +14,7 @@
 @implementation RootViewController
 
 @synthesize fileArray;
+@synthesize presentationType;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -76,7 +77,7 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-	cell.textLabel.text = [[NSString stringWithFormat:@"%@", [self.fileArray objectAtIndex:indexPath.row]] stringByDeletingPathExtension];
+	cell.textLabel.text = [[NSString stringWithFormat:@"%@", [self.fileArray objectAtIndex:indexPath.row]] lastPathComponent];
 	
     return cell;
 }
@@ -131,7 +132,12 @@
         [audioPlayer setSelectedIndex:indexPath.row];
     }
     
-	[self.navigationController presentViewController:audioPlayer animated:YES completion:^{}];
+    if (presentationType.selectedSegmentIndex == 0) {
+        [self.navigationController pushViewController:audioPlayer animated:YES];
+    }else {
+        [self.navigationController presentViewController:[[[UINavigationController alloc] initWithRootViewController:audioPlayer] autorelease] animated:YES completion:^{}];
+    }
+    
 }
 
 
